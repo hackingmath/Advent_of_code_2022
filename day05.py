@@ -16,23 +16,33 @@ stacks = [list(x) for x in stacks]
 moves = [x for x in lst[10:]]
 
 def move1(movestr,s = stacks):
+    """Takes the string of 'move num from fromstack to tostack' and moves that element
+    to the desired list. Removes element from previous list.
+    """
+    #split string into list of words
     movelst = movestr.split(' ')
-    print(movelst)
+    #print(movelst)
+    #get important numbers
     num,fromstack,tostack = int(movelst[1]),int(movelst[3]),int(movelst[5])
-    print(num,fromstack,tostack)
+    #print(num,fromstack,tostack)
+    #repeat num times
     for i in range(num):
+        #add desired element to tostack
         s[tostack].append(s[fromstack][-1])
+        #remove element from fromstack
         s[fromstack] = s[fromstack][:-1]
-        print(s[tostack])
+        #print(s[tostack])
 
 def move2(movestr,s = stacks):
+    """Same as move1 but moves entire slice of num elements in order,
+    not backwards."""
     movelst = movestr.split(' ')
-    print(movelst)
+    #print(movelst)
     num,fromstack,tostack = int(movelst[1]),int(movelst[3]),int(movelst[5])
-    print(num,fromstack,tostack)
+    #print(num,fromstack,tostack)
     s[tostack] += s[fromstack][-num:]
     s[fromstack] = s[fromstack][:-num]
-    print(s[tostack])
+    #print(s[tostack])
 
 
 for i,v in enumerate(moves):
